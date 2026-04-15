@@ -84,10 +84,9 @@ fun LogItem(
             verticalAlignment = Alignment.CenterVertically
         ) {
             val icon = when (log.category.lowercase()) {
-                "transport" -> Icons.Default.DirectionsCar
+                "transportation" -> Icons.Default.DirectionsCar
                 "food" -> Icons.Default.Restaurant
-                "energy" -> Icons.Default.Bolt
-                "shopping" -> Icons.Default.ShoppingCart
+                "home" -> Icons.Default.Home
                 "waste" -> Icons.Default.Delete
                 else -> Icons.Default.Help
             }

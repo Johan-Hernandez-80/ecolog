@@ -1,5 +1,6 @@
 package com.example.ecolog
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -30,7 +31,7 @@ class MainActivity : ComponentActivity() {
             EcoLogTheme {
                 val navController = rememberNavController()
                 
-                // Obtenemos los logs directamente del DataStore
+                // Dashboard (Task 2)
                 val logs by dataStoreManager.logsFlow.collectAsState(initial = emptyList())
 
                 Scaffold(
@@ -53,10 +54,12 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
+                        // Task 1: Navigation to Registration Screen
                         composable(Screen.AddLog.route) {
                             AddLogScreen(
                                 onBack = { navController.popBackStack() },
                                 onSave = { name, category, emission ->
+                                    // Task 3: Background storage with Coroutines
                                     lifecycleScope.launch {
                                         dataStoreManager.addLog(
                                             CarbonLog(
@@ -66,18 +69,13 @@ class MainActivity : ComponentActivity() {
                                                 carbonEmission = emission
                                             )
                                         )
-                                        navController.navigate(Screen.Success.route) {
-                                            popUpTo(Screen.Home.route)
-                                        }
+                                        // Task 3: Launch SuccessActionActivity via Intent
+                                        val intent = Intent(this@MainActivity, SuccessActionActivity::class.java)
+                                        startActivity(intent)
+                                        
+                                        // Go back to home so the list is updated when returning
+                                        navController.popBackStack(Screen.Home.route, inclusive = false)
                                     }
-                                }
-                            )
-                        }
-
-                        composable(Screen.Success.route) {
-                            SuccessScreen(
-                                onContinue = {
-                                    navController.popBackStack(Screen.Home.route, inclusive = false)
                                 }
                             )
                         }

@@ -19,7 +19,7 @@ fun AddLogScreen(
     var emission by remember { mutableStateOf("") }
     var expanded by remember { mutableStateOf(false) }
 
-    val categories = listOf("Transport", "Food", "Energy", "Waste", "Other")
+    val categories = listOf("Transportation", "Food", "Home", "Other")
 
     val isValid = activityName.isNotBlank() &&
             category.isNotBlank() &&
