@@ -8,9 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.ecolog.ui.theme.EcoLogTheme
 
 @Composable
 fun SuccessScreen(
@@ -54,13 +52,5 @@ fun SuccessScreen(
                 Text("Continue")
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun SuccessScreenPreview() {
-    EcoLogTheme {
-        SuccessScreen(onContinue = {})
     }
 }
